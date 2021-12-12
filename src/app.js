@@ -1,10 +1,10 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import Pet from "./Pet";
+// import React from "react";
+import ReactDOM from "react-dom"; //Babel automatically imports React if we import ReactDOM
+import Pet from "./Pet"; //Note eslint does not know how to parse React/JSX, hence the errors
 
-const App = () => {
+/* const App = () => {
   return React.createElement("div", {}, [
-    React.createElement("h1", {}, "Adope Me"),
+    React.createElement("h1", {}, "Adopt Me"),
     ...[1, 2, 3, 4].map((i) => React.createElement("h1", {}, i)),
     React.createElement(Pet, { name: "Yuna", animal: "Dog", breed: "Pariah" }),
     React.createElement(Pet, {
@@ -18,6 +18,17 @@ const App = () => {
       breed: "Gentlefish",
     }),
   ]);
+}; */
+
+const App = () => {
+  return (
+    <div>
+      <h1>Adopt Me</h1>
+      <Pet name="Yuna" animal="Dog" breed="Pariah"/>
+      <Pet name="Lorna" animal="Bird" breed="Cockatiel"/>
+      <Pet name="Iktefish" animal="Fish" breed="Gentlefish"/>
+    </div>
+  );
 };
 
-ReactDOM.render(React.createElement(App), document.getElementById("root"));
+ReactDOM.render(<App/>, document.getElementById("root"));
