@@ -1,6 +1,10 @@
 /* Hooks allow us to keep track of states. All hooks begin with `use`. */
 import { useState } from "react"; // This is a `hook
 
+/* IMPORTANT NOTE:
+States can be used to make animations, but everytime a state is changed, it triggers a re-render.
+This, if happenning frequently (like every milisecond or so), can clog up the main thread. */
+
 // Lets create a list of animals that will be chosen via dropdown:
 const ANIMAL = Object.freeze([
   "bird",
@@ -13,7 +17,7 @@ const ANIMAL = Object.freeze([
 
 const SearchParams = () => {
   const [location, setLocation] = useState("Seattle, WA");
-  const [animal, setAnimal] = useState("");
+  const [animal, setAnimal] = useState("dog");
   const [breed, setBreed] = useState("");
   const breeds = [];
   // const location = "Seattle, WA";
@@ -42,7 +46,6 @@ const SearchParams = () => {
             onChange={(e) => setAnimal(e.target.value)}
             onBlur={(e) => setAnimal(e.target.value)}
           >
-            <option>n/a</option>
             {ANIMAL.map((animal) => {
               return (
                 <option value={animal} key={animal}>
