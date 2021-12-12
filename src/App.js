@@ -1,6 +1,7 @@
 // import React from "react";
 import ReactDOM from "react-dom"; //Babel automatically imports React if we import ReactDOM
-import Pet from "./Pet"; //Note eslint does not know how to parse React/JSX, hence the errors
+// import Pet from "./Pet"; //Note eslint does not know how to parse React/JSX, hence the errors
+import SearchParams from "./SearchParams";
 
 /* const App = () => {
   return React.createElement("div", {}, [
@@ -20,7 +21,7 @@ import Pet from "./Pet"; //Note eslint does not know how to parse React/JSX, hen
   ]);
 }; */
 
-const App = () => {
+/* const App = () => {
   return (
     <div>
       <h1>Adopt Me</h1>
@@ -29,6 +30,15 @@ const App = () => {
       <Pet name="Iktefish" animal="Fish" breed="Gentlefish"/>
     </div>
   );
+}; */
+
+const App = () => {
+  return (
+    <div>
+      <h1>Adopt Me!</h1>
+      <SearchParams />
+    </div>
+  );
 };
 
-ReactDOM.render(<App/>, document.getElementById("root"));
+ReactDOM.render(<App />, document.getElementById("root"));
