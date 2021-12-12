@@ -1,9 +1,21 @@
+/* Hooks allow us to keep track of states. All hooks begin with `use`. */
 import { useState } from "react"; // This is a `hook
 
-/* Hooks allow us to keep track of states. All hooks begin with `use`. */
+// Lets create a list of animals that will be chosen via dropdown:
+const ANIMAL = Object.freeze([
+  "bird",
+  "cat",
+  "dog",
+  "rabbit",
+  "reptile",
+  "dolphin",
+]); // I named the var in caps just to denote that this will not be changed
 
 const SearchParams = () => {
   const [location, setLocation] = useState("Seattle, WA");
+  const [animal, setAnimal] = useState("");
+  const [breed, setBreed] = useState("");
+  const breeds = [];
   // const location = "Seattle, WA";
   return (
     <div className="search-params">
@@ -21,6 +33,42 @@ const SearchParams = () => {
             value={location}
             placeholder="Leader"
           />
+        </label>
+        <label htmlFor="animal">
+          Animal
+          <select
+            id="animal"
+            value={animal}
+            onChange={(e) => setAnimal(e.target.value)}
+            onBlur={(e) => setAnimal(e.target.value)}
+          >
+            <option>n/a</option>
+            {ANIMAL.map((animal) => {
+              return (
+                <option value={animal} key={animal}>
+                  {animal}
+                </option>
+              );
+            })}
+          </select>
+        </label>
+        <label htmlFor="breed">
+          Breed
+          <select
+            id="breed"
+            value={breed}
+            onChange={(e) => setBreed(e.target.value)}
+            onBlur={(e) => setBreed(e.target.value)}
+          >
+            <option>n/a</option>
+            {breeds.map((breed) => {
+              return (
+                <option value={breed} key={breed}>
+                  {breed}
+                </option>
+              );
+            })}
+          </select>
         </label>
         <button>Submit</button>
       </form>
