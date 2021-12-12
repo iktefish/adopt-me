@@ -1,0 +1,28 @@
+{
+  "name": "adopt-me",
+  "version": "1.0.0",
+  "description": "A pet adoption app witten with React.js",
+  "main": "index.js",
+  "scripts": {
+    "dev": "parcel src/index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iktefish/adopt-me.git"
+  },
+  "author": "Ivan Shafiuddin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/iktefish/adopt-me/issues"
+  },
+  "homepage": "https://github.com/iktefish/adopt-me#readme",
+  "dependencies": {
+    "parcel": "^1.12.3",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.16",
+    "@babel/preset-react": "^7.12.13"
+  }
+}
