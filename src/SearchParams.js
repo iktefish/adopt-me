@@ -106,14 +106,7 @@ const SearchParams = () => {
         {/* When we use `onClick()`, the form will only be submitted on clicking `Submit` button and not upon CR.
                 Best practice would be to use `onSubmit()` on the <form> */}
       </form>
-      {pets.map((pet) => {
-        <Pet
-          name={pet.name}
-          animal={pet.animal}
-          breed={pet.breed}
-          key={pet.id}
-        />;
-      })}
+      <Results pet={pets} />
     </div>
   );
 };
