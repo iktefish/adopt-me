@@ -1,6 +1,7 @@
 /* Hooks allow us to keep track of states. All hooks begin with `use`. */
 import { useState } from "react"; // This is a `hook
 import { useEffect } from "react"; // This is a `hook
+import { useBreedList } from "./useBreedList";
 import Pet from "./Pet";
 
 /* IMPORTANT NOTE:
@@ -22,8 +23,8 @@ const SearchParams = () => {
   const [animal, setAnimal] = useState("dog");
   const [breed, setBreed] = useState("");
   const [pets, setPets] = useState([]);
-  const breeds = [];
-  // const location = "Seattle, WA";
+  // const breeds = [];
+  const breeds = useBreedList(animal);
 
   const useEffect =
     (() => {
