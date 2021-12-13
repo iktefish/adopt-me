@@ -1,5 +1,7 @@
 /* Hooks allow us to keep track of states. All hooks begin with `use`. */
 import { useState } from "react"; // This is a `hook
+import { useEffect } from "react"; // This is a `hook
+import Pet from "./Pet";
 
 /* IMPORTANT NOTE:
 States can be used to make animations, but everytime a state is changed, it triggers a re-render.
@@ -19,8 +21,27 @@ const SearchParams = () => {
   const [location, setLocation] = useState("Seattle, WA");
   const [animal, setAnimal] = useState("dog");
   const [breed, setBreed] = useState("");
+  const [pets, setPets] = useState([]);
   const breeds = [];
   // const location = "Seattle, WA";
+
+  const useEffect =
+    (() => {
+      requestPets();
+    },
+    [animal]);
+  /* The `[]` at the end makes sure that useEffect() is only called once.
+     The `[animal]` means that this will be called only when `animal` is changed. */
+
+  async function requestPets() {
+    const res = await fetch(
+      `http://pets-v2.dev-apis.com/pets?animal=${animal}&location=${location}&breed=${breed}`
+    );
+    const json = await res.json();
+    console.log(json);
+    setPets(json.pets); // Since serPets() triggers a re-render, the useEffect() function is called again fininitely
+  }
+
   return (
     <div className="search-params">
       <form>
@@ -75,6 +96,14 @@ const SearchParams = () => {
         </label>
         <button>Submit</button>
       </form>
+      {pets.map((pet) => {
+        <Pet
+          name={pet.name}
+          animal={pet.animal}
+          breed={pet.breed}
+          key={pet.id}
+        />;
+      })}
     </div>
   );
 };
