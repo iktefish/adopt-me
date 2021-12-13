@@ -2,7 +2,7 @@
 import { useState } from "react"; // This is a `hook
 import { useEffect } from "react"; // This is a `hook
 import { useBreedList } from "./useBreedList";
-import Pet from "./Pet";
+import Results from "./Results";
 
 /* IMPORTANT NOTE:
 States can be used to make animations, but everytime a state is changed, it triggers a re-render.
@@ -26,11 +26,9 @@ const SearchParams = () => {
   // const breeds = [];
   const breeds = useBreedList(animal);
 
-  const useEffect =
-    (() => {
-      requestPets();
-    },
-    [animal]);
+  useEffect(() => {
+    requestPets();
+  }, []);
   /* The `[]` at the end makes sure that useEffect() is only called once.
      The `[animal]` means that this will be called only when `animal` is changed. */
 
@@ -63,7 +61,7 @@ const SearchParams = () => {
             /* React also doesn't render the entire page upon every reaction. It is very intelligent in modularizing
       a page and re-rendering only necessary segments. */
             value={location}
-            placeholder="Leader"
+            placeholder="Location"
           />
         </label>
         <label htmlFor="animal">
@@ -74,6 +72,7 @@ const SearchParams = () => {
             onChange={(e) => setAnimal(e.target.value)}
             onBlur={(e) => setAnimal(e.target.value)}
           >
+            <option />
             {ANIMAL.map((animal) => {
               return (
                 <option value={animal} key={animal}>
@@ -86,12 +85,13 @@ const SearchParams = () => {
         <label htmlFor="breed">
           Breed
           <select
+            disabled={!breeds.length}
             id="breed"
             value={breed}
             onChange={(e) => setBreed(e.target.value)}
             onBlur={(e) => setBreed(e.target.value)}
           >
-            <option>n/a</option>
+            <option />
             {breeds.map((breed) => {
               return (
                 <option value={breed} key={breed}>
@@ -106,7 +106,7 @@ const SearchParams = () => {
         {/* When we use `onClick()`, the form will only be submitted on clicking `Submit` button and not upon CR.
                 Best practice would be to use `onSubmit()` on the <form> */}
       </form>
-      <Results pet={pets} />
+      <Results pets={pets} />
     </div>
   );
 };

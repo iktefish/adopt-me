@@ -14,6 +14,7 @@ export default function useBreedList(animal) {
     } else {
       requestBreedList();
     }
+
     async function requestBreedList() {
       setBreedList([]); // We want the `breedList` to be empty in interim states when we are awaiting a response
       setStatus("loading");

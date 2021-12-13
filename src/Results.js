@@ -8,18 +8,21 @@ const Results = ({ pets }) => {
         <h2>No Pets found</h2>
       ) : (
         pets.map((pet) => {
-          <Pet
-            animal={pet.animal}
-            key={pet.id} // This `key` is not the same as `id`. Key is only used by React, so we can't have a `prop` called `key`
-            name={pet.name}
-            breed={pet.breed}
-            images={pet.images}
-            location={`${pet.city}, ${pet.state}`}
-            id={pet.id}
-          />;
+          return (
+            <Pet
+              animal={pet.animal}
+              key={pet.id} // This `key` is not the same as `id`. Key is only used by React, so we can't have a `prop` called `key`
+              name={pet.name}
+              breed={pet.breed}
+              images={pet.images}
+              location={`${pet.city}, ${pet.state}`}
+              id={pet.id}
+            />
+          );
         })
       )}
-      )
     </div>
   );
 };
+
+export default Results;
