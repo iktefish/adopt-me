@@ -45,7 +45,13 @@ const SearchParams = () => {
 
   return (
     <div className="search-params">
-      <form>
+      <form
+        onSubmit={(e) => {
+          /* We must prevent a page-refresh upon form submission */
+          e.preventDefault();
+          requestPets();
+        }}
+      >
         <label htmlFor="location">
           Location
           <input
@@ -96,6 +102,9 @@ const SearchParams = () => {
           </select>
         </label>
         <button>Submit</button>
+        {/* <button onClick={() => {Some instruction here}}>Submit</button> */}
+        {/* When we use `onClick()`, the form will only be submitted on clicking `Submit` button and not upon CR.
+                Best practice would be to use `onSubmit()` on the <form> */}
       </form>
       {pets.map((pet) => {
         <Pet
