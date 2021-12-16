@@ -10,7 +10,6 @@ in stdenv.mkDerivation {
     buildInputs = [
         jq
         nodejs
-        nodeNix.typescript
         nodeNix.typescript-language-server
         nodeNix.vscode-html-languageserver-bin
         nodeNix.vscode-css-languageserver-bin
